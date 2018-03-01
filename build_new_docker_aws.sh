@@ -5,8 +5,8 @@ sudo pip install cheat
 sudo yum -y install docker
 sudo usermod -a -G docker upload
 
-curl https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz -o go1.8.3.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.8.3.linux-amd64.tar.gz
+curl https://dl.google.com/go/go1.10.linux-amd64.tar.gz -o go1.10.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.10.linux-amd64.tar.gz
 sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
 go version
 sudo ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt

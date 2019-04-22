@@ -24,4 +24,4 @@ cmake --version
 wget https://fluentbit.io/releases/1.0/fluent-bit-1.0.6.tar.gz
 tar -xzvf fluent-bit-1.0.6.tar.gz 
 cd fluent-bit-1.0.6
-cmake ../
+cmake -DFLB_OUT_KAFKA=On ../

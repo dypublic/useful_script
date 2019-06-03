@@ -1,6 +1,7 @@
 cat /etc/*release
 sudo yum install gcc -y
 sudo yum install gcc-c++ -y
+sudo yum install flex bison -y
 yum info cmake
 
 #In order to install version 3.6.2 or newer version, first uninstall it with yum remove

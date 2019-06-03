@@ -22,9 +22,9 @@ sudo ln -s /usr/local/bin/cpack /usr/bin/cpack
 cmake --version
 
 cd ..
-wget https://fluentbit.io/releases/1.0/fluent-bit-1.0.6.tar.gz
-tar -xzvf fluent-bit-1.0.6.tar.gz 
-cd fluent-bit-1.0.6
+wget https://fluentbit.io/releases/1.1/fluent-bit-1.1.2.tar.gz
+tar -xzvf fluent-bit-1.1.2.tar.gz 
+cd fluent-bit-1.1.2
 cd build
 cmake -DFLB_OUT_KAFKA=On -DFLB_TLS=On ../
 make

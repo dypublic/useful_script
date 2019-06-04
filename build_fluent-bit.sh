@@ -13,12 +13,10 @@ sudo yum remove cmake -y
 wget https://github.com/Kitware/CMake/releases/download/v3.14.1/cmake-3.14.1.tar.gz
 tar -zxvf cmake-3.14.1.tar.gz
 cd cmake-3.14.1
-sudo ./bootstrap --prefix=/usr/local
-sudo make
+./bootstrap --prefix=/usr
+make
 sudo make install
-sudo ln -s /usr/local/bin/cmake /usr/bin/cmake
-sudo ln -s /usr/local/bin/ctest /usr/bin/ctest
-sudo ln -s /usr/local/bin/cpack /usr/bin/cpack
+sudo chmod o+rx /usr/share/cmake-3.14/
 
 cmake --version
 

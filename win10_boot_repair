@@ -1,0 +1,64 @@
+选择疑难解答，然后选择高级工具，再进入命令行排除故障，这时候你会看到命令行的初始文字变成了
+
+X：Source\，那说明进入了管理者模式，然后按照以下步骤依次输入：
+
+1. diskpart
+
+2.sel disk 0
+3.list par
+4.sel par 1 （你选择的par 1大小约为100M）
+5.assign letter=P
+6.exit
+
+最后输入bcdboot c:\windows /s P： /f uefi /l zh-cn
+
+然后会提示你创建文件成功，关掉界面后会多出一个选项：退出并继续windows10，点击就可以重新进入win10了，至此完成修复。
+----------
+首先还是要制作一个win10的启动盘
+开机选择从启动盘启动
+打开后选择继续之后不要点现在安装，毕竟咱不是要重装系统，点击左下角的修复计算机
+依次点击疑难解答-高级选项
+到这里你可以尝试一下“启动修复那个选项”，也许你不像我那么倒霉，用这个就可以直接修复你的win10引导了，不行的话就点击“命令行”英文叫command prompt选项
+如果你选择命令行后还会提示让你输bitlocker密码，这次你可以选择跳过这个驱动器，这样应该就能有一个cmd的窗口弹出来了
+在cmd中输入下面文字后，enter
+diskpart
+这时窗口中应该会出现
+DISKPART>
+ 
+
+然后输入
+sel disk 0
+enter后 出现“Disk 0 is now the selected disk.”
+
+输入
+list vol
+会显示你的所有分区信息
+
+找到你的ESP分区，这个分区的的格式通常是FAT32格式，大小在100兆或者多一点左右，假设你找到的是disk 2，则继续输入
+输入一下并分别enter，其中G：是指你给这个盘分配的盘符，可以是任何你暂时没用到的盘符
+sel vol 2
+assign letter=G:
+等待这句话出现
+
+DiskPart successfully assigned the drive letter or mount point.
+ 
+
+输入exit后退出
+接着输入
+cd /d G:\EFI\Microsoft\Boot\
+其中G就是你刚刚分配给ESP分区的盘符，那个目录如果已经不存在了的话只能是先用winPE进入系统后新建出来
+
+使用bootrec指令
+bootrec /fixboot
+ 
+
+然后使用bcdboot重建BCD
+bcdboot C:Windows /l zh-ch /s G: /f uefi
+特别注意，那个C：是你的系统所在盘，不一定是C盘了哦，因为在这里盘符和你之前使用系统时候的盘符可能不一致，你需要自己分辨一下，后面的G：是你的ESP分区的盘符，其他的照着写就可以了
+
+你也可以直接用这个指令重建BCD
+bootrec /rebuildbcd
+ 
+
+大功告成，输入exit指令退出后重启电脑
+如果你和我一样是双系统，同时想用grub来引导win10的话，你还需要重启进入ubuntu，打开终端，输入“sudo update-grub”更新grub，重启就可以在grub上看到win10 的启动项了

@@ -21,9 +21,10 @@ sudo chmod o+rx /usr/share/cmake-3.14/
 cmake --version
 
 cd ..
-wget https://fluentbit.io/releases/1.1/fluent-bit-1.1.2.tar.gz
-tar -xzvf fluent-bit-1.1.2.tar.gz 
-cd fluent-bit-1.1.2
+FB_VERSION=1.1.3
+wget https://fluentbit.io/releases/1.1/fluent-bit-${FB_VERSION}.tar.gz
+tar -xzvf fluent-bit-${FB_VERSION}.tar.gz 
+cd fluent-bit-${FB_VERSION}
 cd build
 cmake -DFLB_OUT_KAFKA=On -DFLB_TLS=On -DFLB_HTTP_SERVER=On ../
 sudo make

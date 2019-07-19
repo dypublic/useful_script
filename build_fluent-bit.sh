@@ -21,8 +21,8 @@ sudo chmod o+rx /usr/share/cmake-3.14/
 cmake --version
 
 cd ..
-FB_VERSION=1.1.3
-wget https://fluentbit.io/releases/1.1/fluent-bit-${FB_VERSION}.tar.gz
+FB_VERSION=1.2.1
+wget https://fluentbit.io/releases/1.2/fluent-bit-${FB_VERSION}.tar.gz
 tar -xzvf fluent-bit-${FB_VERSION}.tar.gz 
 cd fluent-bit-${FB_VERSION}
 cd build
